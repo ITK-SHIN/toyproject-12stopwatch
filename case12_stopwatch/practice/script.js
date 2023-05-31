@@ -47,18 +47,27 @@
     }
 
     start() {
+      clearInterval(this.interval);
       this.startTime = Date.now() - this.elapsedTIme;
       this.interval = setInterval(this.startTimer.bind(this), 10);
     }
-    stop() {}
+
+    stop() {
+      clearInterval(this.interval);
+    }
     reset() {}
   }
 
   const $startButton = get('.timer_button.start');
+  const $stopButton = get('.timer_button.stop');
   const $timer = get('.timer');
   const stopwatch = new Stopwatch($timer);
 
   $startButton.addEventListener('click', () => {
     stopwatch.start();
+  });
+
+  $stopButton.addEventListener('click', () => {
+    stopwatch.stop();
   });
 })();
